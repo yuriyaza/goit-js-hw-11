@@ -1,7 +1,8 @@
 export const markup = {
+  
   createOneCard(srcObject) {
     return `
-      <a class="slider" href="${srcObject.largeImageURL}">
+      <a class="slide-wrapper" href="${srcObject.largeImageURL}">
         <div class="photo-card">
           <div class="image">
             <img src="${srcObject.webformatURL}" alt="Tags: ${srcObject.tags}" loading="lazy"/>

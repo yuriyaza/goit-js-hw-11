@@ -1,8 +1,16 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif, Verdana, Geneva, Tahoma;
   font-size: 12px;
+}
+
+a {
+  text-decoration: none;
 }
 
 .hidden {
@@ -21,7 +29,8 @@ body {
   width: 100%;
   z-index: 10;
 
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   text-align: center;
 
   background-image: url(../images/background-small.jpg);
@@ -40,6 +49,7 @@ body {
 
 .search-form input {
   width: 190px;
+  margin-right: 2px;
 }
 
 .search-form button {
@@ -59,19 +69,17 @@ body {
   gap: 25px 15px;
 }
 
-.slider {
-  text-decoration: none;
-}
-
 .photo-card {
-  width: 300px;
+  width: 330px;
+  border-radius: 4px;
+  overflow: hidden;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
   transition: transform 250ms, box-shadow 250ms;
 }
 
 .image {
-  width: 300px;
-  height: 195px;
+  width: 330px;
+  height: 215px;
   overflow: hidden;
 }
 
@@ -92,7 +100,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 22px;
+  padding: 0px 25px;
   text-align: center;
   color: #707070;
 }
@@ -104,7 +112,7 @@ body {
 .delimiter {
   padding-top: 30px;
   padding-bottom: 30px;
-  text-align: center; 
+  text-align: center;
 }
 
 .spinner {

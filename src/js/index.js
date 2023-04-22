@@ -12,8 +12,8 @@ const ui = {
   spinner: document.querySelector('.spinner'),
 };
 
-const slider = new SimpleLightbox('.slider', {
-  overlayOpacity: 0.8,
+const slider = new SimpleLightbox('.slide-wrapper', {
+  overlayOpacity: 0.9,
   showCounter: false,
   captionsData: 'alt',
   captionDelay: 150,
@@ -32,6 +32,7 @@ async function onSubmit(event) {
   event.preventDefault();
   query = ui.form.searchQuery.value.trim();
   if (query === '' || query === api.lastSearch) return;
+
   ui.button.disabled = true;
   clearPage();
   await renderPage();
