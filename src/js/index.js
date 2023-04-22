@@ -1,43 +1,50 @@
 import { markup } from './markup';
 import { Api } from './api';
 import { Notify } from 'notiflix';
-
 import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css'
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
-const gallery = new SimpleLightbox('.gallery a');
+const ui = {
+  form: document.querySelector('.search-form'),
+  button: document.querySelector('.search-form button'),
+  gallery: document.querySelector('.gallery'),
+  delimiter: document.querySelector('.delimiter'),
+  spinner: document.querySelector('.spinner'),
+};
+
+const slider = new SimpleLightbox('.slider', {
+  overlayOpacity: 0.8,
+  showCounter: false,
+  captionsData: 'alt',
+  captionDelay: 150,
+});
+
 const api = new Api();
-
-const formEl = document.querySelector('.search-form');
-const buttonEl = document.querySelector('.search-form button');
-const galleryEl = document.querySelector('.gallery');
-const delimiterEl = document.querySelector('.delimiter');
-const spinnerEl = document.querySelector('.spinner');
 let query = '';
 
-formEl.addEventListener('submit', onSubmit);
-Notify.init({ showOnlyTheLastOne: true, clickToClose: true });
-
 const intersectionObserver = new IntersectionObserver(onEndOfScroll);
-intersectionObserver.observe(delimiterEl);
+intersectionObserver.observe(ui.delimiter);
+
+Notify.init({ showOnlyTheLastOne: true, clickToClose: true });
+ui.form.addEventListener('submit', onSubmit);
 
 async function onSubmit(event) {
   event.preventDefault();
-  query = formEl.searchQuery.value.trim();
+  query = ui.form.searchQuery.value.trim();
   if (query === '' || query === api.lastSearch) return;
-  buttonEl.disabled = true;
+  ui.button.disabled = true;
   clearPage();
   await renderPage();
-  buttonEl.disabled = false;
+  ui.button.disabled = false;
 }
 
 function clearPage() {
-  galleryEl.innerHTML = '';
+  ui.gallery.innerHTML = '';
 }
 
 async function renderPage() {
   try {
-    spinnerEl.classList.remove('hidden');
+    ui.spinner.classList.remove('hidden');
     const srcData = await api.getData(query);
     const srcElements = srcData.data.hits;
 
@@ -50,15 +57,14 @@ async function renderPage() {
     }
 
     const htmlMarkup = await markup.createManyCards(srcElements);
-    galleryEl.insertAdjacentHTML('beforeend', htmlMarkup);
+    ui.gallery.insertAdjacentHTML('beforeend', htmlMarkup);
+    slider.refresh();
   }
-  
   catch (error) {
     Notify.failure(error.message);
   }
-
   finally {
-    spinnerEl.classList.add('hidden');
+    ui.spinner.classList.add('hidden');
   }
 }
 

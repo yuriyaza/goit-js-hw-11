@@ -24,22 +24,26 @@ body {
   padding: 20px;
   text-align: center;
 
-  background-image: url(../images/SL_031520_28970_01.jpg);
+  background-image: url(../images/background-small.jpg);
   background-position: top center;
   opacity: 0.9;
 }
 
 .search-form input,
 .search-form button {
-  padding: 3px 6px;
+  padding: 6px 12px;
   font: inherit;
-  font-size: 14px;
+  font-size: 16px;
   border: 1px solid #808080;
   border-radius: 4px;
 }
 
+.search-form input {
+  width: 190px;
+}
+
 .search-form button {
-  min-width: 70px;
+  min-width: 90px;
   transition: transform, 100ms;
 }
 
@@ -53,6 +57,10 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 25px 15px;
+}
+
+.slider {
+  text-decoration: none;
 }
 
 .photo-card {
