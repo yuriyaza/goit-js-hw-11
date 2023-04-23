@@ -1,22 +1,28 @@
 import axios from 'axios';
 
 export class Api {
+  #SOURCE_URL = 'https://pixabay.com/api/';
+  #API_KEY = '35549464-6e431a9fbd4d75e0b6b25f5be';
+
   constructor() {
     this.lastSearch = '';
     this.perPage = 40;
     this.currentPage = 1;
+    this.isNewSearch = false;
     this.isEndOfPages = false;
   }
 
   async getData(query) {
     if (query !== this.lastSearch) {
+      this.isNewSearch = true;
       this.currentPage = 1;
-      this.endOfPages = false;
+    } else {
+      this.isNewSearch = false;
     }
 
-    const response = await axios.get('https://pixabay.com/api/', {
+    const response = await axios.get(this.#SOURCE_URL, {
       params: {
-        key: '35549464-6e431a9fbd4d75e0b6b25f5be',
+        key: this.#API_KEY,
         q: query,
         image_type: 'photo',
         orientation: 'horizontal',

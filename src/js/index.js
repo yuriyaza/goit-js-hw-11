@@ -53,7 +53,8 @@ async function renderPage() {
       Notify.failure('Sorry, there are no images matching your search query. Please try again.');
       return;
     }
-    if (api.currentPage === 2) {
+
+    if (api.isNewSearch) {
       Notify.info(`Hooray! We found ${srcData.data.totalHits} images.`);
     }
 
