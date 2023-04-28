@@ -62,9 +62,11 @@ async function renderPage() {
     ui.gallery.insertAdjacentHTML('beforeend', htmlMarkup);
     slider.refresh();
   }
+  
   catch (error) {
     Notify.failure(error.message);
   }
+  
   finally {
     ui.spinner.classList.add('hidden');
   }
