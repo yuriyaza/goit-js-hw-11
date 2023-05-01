@@ -59,6 +59,7 @@ async function renderPage() {
     }
 
     const htmlMarkup = await markup.createManyCards(srcElements);
+    console.log(htmlMarkup);
     ui.gallery.insertAdjacentHTML('beforeend', htmlMarkup);
     slider.refresh();
   }
