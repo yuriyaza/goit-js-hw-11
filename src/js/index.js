@@ -80,4 +80,3 @@ function onEndOfScroll(entries) {
     }
   });
 }
-
